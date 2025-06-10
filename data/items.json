@@ -1,73 +1,29 @@
 [
   {
-    "id": 1,
-    "name": "Diamond Sword",
-    "price": 2500,
-    "stock": 15,
-    "icon": "⚔️",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/619px-Placeholder_view_vector.svg.png",
-    "description": "High-quality weapon with maximum durability"
+    "name": "Ural-4320 Tranport Truck - Canopy (Doc)",
+    "price": 3000000,
+    "stock": 1,
+    "icon": "",
+    "image": "https://i.imgur.com/QOmPVd5.png",
+    "description": " ",
+    "id": 1
   },
   {
-    "id": 2,
-    "name": "Netherite Armor",
-    "price": 4200,
-    "stock": 3,
-    "icon": "🛡️",
-    "image": "/placeholder.svg?height=200&width=300",
-    "description": "Complete armor set with enchantments"
-  },
-  {
-    "id": 3,
-    "name": "Diamonds",
-    "price": 150,
-    "stock": 64,
-    "icon": "💎",
-    "image": "/placeholder.svg?height=200&width=300",
-    "description": "Premium materials for crafting"
-  },
-  {
-    "id": 4,
-    "name": "Enchanted Bow",
-    "price": 1800,
-    "stock": 8,
-    "icon": "🏹",
-    "image": "/placeholder.svg?height=200&width=300",
-    "description": "Infinity & Power V enchantments"
-  },
-  {
-    "id": 5,
-    "name": "Healing Potions Set",
-    "price": 350,
+    "name": "Ural-4320 Fuel Truck (Doc)",
+    "price": 2000000,
     "stock": 0,
-    "icon": "🧪",
-    "image": "/placeholder.svg?height=200&width=300",
-    "description": "10x Healing Potion II + 5x Regeneration"
+    "icon": "",
+    "image": "https://i.imgur.com/f7sTcon.png",
+    "description": " ",
+    "id": 2
   },
   {
-    "id": 6,
-    "name": "Flint & Steel",
-    "price": 75,
-    "stock": 25,
-    "icon": "🔥",
-    "image": "/placeholder.svg?height=200&width=300",
-    "description": "Unbreaking III enchantment"
-  },
-  {
-    "id": 7,
-    "name": "Crossbow Elite",
-    "price": 2100,
-    "stock": 5,
-    "icon": "🎯",
-    "description": "Quick Charge III & Multishot enchantments"
-  },
-  {
-    "id": 8,
-    "name": "Netherite Pickaxe",
-    "price": 3200,
-    "stock": 2,
-    "icon": "⛏️",
-    "image": "/placeholder.svg?height=200&width=300",
-    "description": "Efficiency V & Fortune III enchantments"
+    "name": "Ural-4320 Transport Truck - Device (Doc)",
+    "price": 18000000,
+    "stock": 0,
+    "icon": "",
+    "image": "https://i.imgur.com/c1d5ipV.png",
+    "description": " ",
+    "id": 3
   }
 ]
