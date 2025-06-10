@@ -6,6 +6,7 @@
     "priceType": "day",
     "stock": 2,
     "icon": "🏎️",
+    "image": "/placeholder.svg?height=200&width=300",
     "description": "Fully tuned • 850 HP • Sport exhaust • Lowering kit",
     "tuned": true
   },
@@ -16,6 +17,7 @@
     "priceType": "day",
     "stock": 1,
     "icon": "🚗",
+    "image": "/placeholder.svg?height=200&width=300",
     "description": "Stage 2 tuning • 650 HP • Carbon body kit • Coilovers",
     "tuned": true
   },
@@ -26,6 +28,7 @@
     "priceType": "day",
     "stock": 1,
     "icon": "🚁",
+    "image": "/placeholder.svg?height=200&width=300",
     "description": "Luxury helicopter • 4 seats • GPS navigation",
     "tuned": false
   },
@@ -36,6 +39,7 @@
     "priceType": "day",
     "stock": 3,
     "icon": "🏍️",
+    "image": "/placeholder.svg?height=200&width=300",
     "description": "Turbo kit • 400 HP • Custom paint • Akrapovic exhaust",
     "tuned": true
   },
@@ -46,6 +50,7 @@
     "priceType": "day",
     "stock": 0,
     "icon": "🚙",
+    "image": "/placeholder.svg?height=200&width=300",
     "description": "Brabus kit • 700 HP • Off-road tires • Armor plating",
     "tuned": true
   },
@@ -56,6 +61,7 @@
     "priceType": "day",
     "stock": 1,
     "icon": "✈️",
+    "image": "/placeholder.svg?height=200&width=300",
     "description": "Private jet • 8 seats • Full equipment • Pilot included",
     "tuned": false
   },
@@ -66,6 +72,7 @@
     "priceType": "day",
     "stock": 2,
     "icon": "🚤",
+    "image": "/placeholder.svg?height=200&width=300",
     "description": "Twin engine • 600 HP • Racing seats • Sound system",
     "tuned": true
   },
@@ -76,6 +83,7 @@
     "priceType": "day",
     "stock": 1,
     "icon": "🛻",
+    "image": "/placeholder.svg?height=200&width=300",
     "description": "Off-road package • 500 HP • Lift kit • All-terrain tires",
     "tuned": true
   }
