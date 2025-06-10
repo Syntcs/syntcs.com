@@ -16,9 +16,31 @@
     "priceType": "once",
     "stock": 1,
     "icon": "",
-    "image": "https://ar-gcp-cdn.bistudio.com/image/d586/0b84abb1040b60673ce8fb3ebda7993854ea26f115267a68af859270c8bb/206465.jpg",
+    "image": "https://i.imgur.com/c1d5ipV.png",
     "description": " ",
     "tuned": true,
     "id": 2
+  },
+  {
+    "name": "Ural-4320 Tranport Truck - Canopy",
+    "price": 200000,
+    "priceType": "once",
+    "stock": 1,
+    "icon": "",
+    "image": "https://i.imgur.com/QOmPVd5.png",
+    "description": "Fully tuned",
+    "tuned": true,
+    "id": 3
+  },
+  {
+    "name": "Ural-4320 Fuel Truck",
+    "price": 150000,
+    "priceType": "once",
+    "stock": 1,
+    "icon": "",
+    "image": "https://i.imgur.com/z6Hj2r8.png",
+    "description": "  ",
+    "tuned": true,
+    "id": 4
   }
 ]
