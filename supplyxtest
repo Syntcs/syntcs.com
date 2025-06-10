@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>syntcs SupplyX - Test</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #e2e8f0;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #3b82f6, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #94a3b8;
+            font-size: 1.1rem;
+        }
+
+        .tabs-container {
+            display: flex;
+            justify-content: center;
+            margin: 40px 0;
+        }
+
+        .tabs {
+            display: flex;
+            background: rgba(30, 41, 59, 0.8);
+            border-radius: 12px;
+            padding: 6px;
+            border: 1px solid #334155;
+            backdrop-filter: blur(10px);
+        }
+
+        .tab-button {
+            padding: 12px 30px;
+            border: none;
+            background: transparent;
+            color: #94a3b8;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tab-button:hover {
+            color: #e2e8f0;
+            background: rgba(59, 130, 246, 0.1);
+        }
+
+        .tab-button.active {
+            background: linear-gradient(45deg, #3b82f6, #06b6d4);
+            color: #ffffff;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+        }
+
+        .content-section {
+            display: none;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .card {
+            background: rgba(30, 41, 59, 0.8);
+            border-radius: 15px;
+            padding: 20px;
+            border: 1px solid #334155;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            position: relative;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: #3b82f6;
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.2);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(45deg, #1e293b, #334155);
+            border-radius: 10px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #3b82f6;
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #f1f5f9;
+        }
+
+        .card-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #10b981;
+            margin-bottom: 10px;
+        }
+
+        .card-stock {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            color: #94a3b8;
+        }
+
+        .stock-indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+
+        .in-stock {
+            background-color: #10b981;
+        }
+
+        .low-stock {
+            background-color: #f59e0b;
+        }
+
+        .out-of-stock {
+            background-color: #ef4444;
+        }
+
+        .card-info {
+            color: #94a3b8;
+            font-size: 0.9rem;
+            margin-top: 10px;
+        }
+
+        .tuned-badge {
+            display: inline-block;
+            background: linear-gradient(45deg, #f59e0b, #eab308);
+            color: #000;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #94a3b8;
+        }
+
+        .error {
+            text-align: center;
+            padding: 40px;
+            color: #ef4444;
+            background: rgba(239, 68, 68, 0.1);
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 20px;
+            border-top: 1px solid #334155;
+            color: #64748b;
+        }
+
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 2rem;
+            }
+            
+            .tabs {
+                flex-direction: column;
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .tab-button {
+                justify-content: center;
+            }
+            
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .search-container {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0 40px 0;
+        }
+
+        .search-box {
+            position: relative;
+            max-width: 500px;
+            width: 100%;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 15px 50px 15px 20px;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            background: rgba(30, 41, 59, 0.8);
+            color: #e2e8f0;
+            font-size: 16px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        }
+
+        .search-input::placeholder {
+            color: #94a3b8;
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #94a3b8;
+            font-size: 1.2rem;
+            pointer-events: none;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 40px;
+            color: #94a3b8;
+            font-size: 1.1rem;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #3b82f6, #06b6d4);
+            color: white;
+        }
+
+        .btn-success {
+            background: linear-gradient(45deg, #10b981, #059669);
+            color: white;
+        }
+
+        .btn-danger {
+            background: linear-gradient(45deg, #ef4444, #dc2626);
+            color: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .card-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+        }
+
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .quantity-btn {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: 1px solid #334155;
+            background: rgba(30, 41, 59, 0.8);
+            color: #e2e8f0;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .quantity-btn:hover {
+            background: rgba(59, 130, 246, 0.2);
+            border-color: #3b82f6;
+        }
+
+        .quantity-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .quantity-value {
+            font-size: 1rem;
+            font-weight: 600;
+            min-width: 30px;
+            text-align: center;
+        }
+
+        /* Cart Styles */
+        .cart-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #3b82f6, #06b6d4);
+            color: white;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(59, 130, 246, 0.4);
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+
+        .cart-button:hover {
+            transform: scale(1.1);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #ef4444;
+            color: white;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            font-size: 0.9rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cart-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+
+        .cart-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cart-content {
+            background: rgba(30, 41, 59, 0.95);
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 800px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            border: 1px solid #334155;
+            backdrop-filter: blur(10px);
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #334155;
+        }
+
+        .cart-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #f1f5f9;
+        }
+
+        .cart-close {
+            background: transparent;
+            border: none;
+            color: #94a3b8;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        .cart-close:hover {
+            color: #ef4444;
+        }
+
+        .cart-items {
+            margin-bottom: 20px;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #334155;
+        }
+
+        .cart-item-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 8px;
+            background: linear-gradient(45deg, #1e293b, #334155);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .cart-item-details {
+            flex-grow: 1;
+        }
+
+        .cart-item-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .cart-item-price {
+            color: #10b981;
+            font-weight: 600;
+        }
+
+        .cart-item-quantity {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-left: 15px;
+        }
+
+        .cart-item-remove {
+            color: #ef4444;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            margin-left: 15px;
+            font-size: 1.2rem;
+            transition: transform 0.2s ease;
+        }
+
+        .cart-item-remove:hover {
+            transform: scale(1.2);
+        }
+
+        .cart-summary {
+            background: rgba(15, 23, 42, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .cart-total-price {
+            color: #10b981;
+        }
+
+        .cart-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .cart-empty {
+            text-align: center;
+            padding: 40px 0;
+            color: #94a3b8;
+        }
+
+        .cart-instructions {
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid #3b82f6;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 20px;
+        }
+
+        .cart-instructions h3 {
+            color: #3b82f6;
+            margin-bottom: 10px;
+        }
+
+        .cart-instructions ol {
+            padding-left: 20px;
+        }
+
+        .cart-instructions li {
+            margin-bottom: 8px;
+        }
+
+        .copy-textarea {
+            width: 100%;
+            height: 100px;
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid #334155;
+            border-radius: 8px;
+            color: #e2e8f0;
+            padding: 10px;
+            margin-top: 15px;
+            resize: none;
+        }
+
+        .copy-textarea:focus {
+            outline: none;
+            border-color: #3b82f6;
+        }
+
+        .copy-success {
+            color: #10b981;
+            margin-top: 10px;
+            display: none;
+        }
+
+        .copy-success.active {
+            display: block;
+            animation: fadeOut 3s forwards;
+        }
+
+        @keyframes fadeOut {
+            0% { opacity: 1; }
+            70% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="logo">syntcs SupplyX</h1>
+            <p class="subtitle">Your Gaming Shop for Items & Vehicles</p>
+        </header>
+
+        <div class="tabs-container">
+            <div class="tabs">
+                <button class="tab-button active" onclick="switchTab('items')">
+                    🛠️ Items Shop
+                </button>
+                <button class="tab-button" onclick="switchTab('vehicles')">
+                    🚗 Vehicle Rental
+                </button>
+            </div>
+        </div>
+
+        <!-- Search Section -->
+        <div class="search-container">
+            <div class="search-box">
+                <input type="text" id="search-input" class="search-input" placeholder="Search items and vehicles...">
+                <div class="search-icon">🔍</div>
+            </div>
+        </div>
+
+        <!-- Items Section -->
+        <div id="items-section" class="content-section active">
+            <div id="items-grid" class="grid">
+                <div class="loading">Loading items...</div>
+            </div>
+        </div>
+
+        <!-- Vehicles Section -->
+        <div id="vehicles-section" class="content-section">
+            <div id="vehicles-grid" class="grid">
+                <div class="loading">Loading vehicles...</div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p>&copy; 2024 syntcs SupplyX - Your trusted gaming partner</p>
+            <p>Contact: Discord or In-Game Message</p>
+        </footer>
+    </div>
+
+    <!-- Cart Button -->
+    <div class="cart-button" onclick="openCart()">
+        🛒
+        <div class="cart-count" id="cart-count">0</div>
+    </div>
+
+    <!-- Cart Modal -->
+    <div id="cart-modal" class="cart-modal">
+        <div class="cart-content">
+            <div class="cart-header">
+                <h2 class="cart-title">Your Cart</h2>
+                <button class="cart-close" onclick="closeCart()">✕</button>
+            </div>
+            <div id="cart-items" class="cart-items">
+                <!-- Cart items will be added here -->
+            </div>
+            <div class="cart-summary">
+                <div class="cart-total">
+                    <span>Total:</span>
+                    <span class="cart-total-price" id="cart-total">$0</span>
+                </div>
+            </div>
+            <div class="cart-actions">
+                <button class="btn btn-danger" onclick="clearCart()">Clear Cart</button>
+                <button class="btn btn-primary" onclick="copyCartToClipboard()">Copy Order Text</button>
+            </div>
+            <div id="copy-success" class="copy-success">✓ Order copied to clipboard!</div>
+            <div class="cart-instructions">
+                <h3>How to Order:</h3>
+                <ol>
+                    <li>Add items to your cart</li>
+                    <li>Click "Copy Order Text" button</li>
+                    <li>Send the copied text to syntcs on Discord</li>
+                    <li>Wait for confirmation and delivery details</li>
+                </ol>
+                <textarea id="cart-text" class="copy-textarea" readonly></textarea>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let itemsData = [];
+        let vehiclesData = [];
+        let filteredItemsData = [];
+        let filteredVehiclesData = [];
+        let cart = [];
+
+        // Load data from JSON files
+        async function loadData() {
+            try {
+                const [itemsResponse, vehiclesResponse] = await Promise.all([
+                    fetch('data/items.json'),
+                    fetch('data/vehicles.json')
+                ]);
+
+                if (!itemsResponse.ok || !vehiclesResponse.ok) {
+                    throw new Error('Failed to load data');
+                }
+
+                itemsData = await itemsResponse.json();
+                vehiclesData = await vehiclesResponse.json();
+                
+                // Initialize filtered data
+                filteredItemsData = [...itemsData];
+                filteredVehiclesData = [...vehiclesData];
+
+                renderItems();
+                renderVehicles();
+                setupSearch();
+                
+                // Load cart from localStorage if available
+                loadCart();
+            } catch (error) {
+                console.error('Error loading data:', error);
+                showError('items-grid', 'Failed to load items data');
+                showError('vehicles-grid', 'Failed to load vehicles data');
+            }
+        }
+
+        function setupSearch() {
+            const searchInput = document.getElementById('search-input');
+            searchInput.addEventListener('input', (e) => {
+                const searchTerm = e.target.value.toLowerCase().trim();
+                filterData(searchTerm);
+            });
+        }
+
+        function filterData(searchTerm) {
+            if (!searchTerm) {
+                // Show all data if search is empty
+                filteredItemsData = [...itemsData];
+                filteredVehiclesData = [...vehiclesData];
+            } else {
+                // Filter items
+                filteredItemsData = itemsData.filter(item => 
+                    item.name.toLowerCase().includes(searchTerm) ||
+                    item.description.toLowerCase().includes(searchTerm)
+                );
+                
+                // Filter vehicles
+                filteredVehiclesData = vehiclesData.filter(vehicle => 
+                    vehicle.name.toLowerCase().includes(searchTerm) ||
+                    vehicle.description.toLowerCase().includes(searchTerm)
+                );
+            }
+            
+            renderItems();
+            renderVehicles();
+        }
+
+        function showError(containerId, message) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = `<div class="error">${message}</div>`;
+        }
+
+        function getStockStatus(stock) {
+            if (stock === 0) return 'out-of-stock';
+            if (stock <= 5) return 'low-stock';
+            return 'in-stock';
+        }
+
+        function getStockText(stock) {
+            if (stock === 0) return 'Out of Stock';
+            return `In Stock: ${stock} pieces`;
+        }
+
+        function getVehicleStockText(stock) {
+            if (stock === 0) return 'Not available';
+            return `Available: ${stock} vehicle${stock > 1 ? 's' : ''}`;
+        }
+
+        function createItemCard(item) {
+            const stockStatus = getStockStatus(item.stock);
+            const stockText = getStockText(item.stock);
+            const isOutOfStock = item.stock === 0;
+            
+            // Use image if available, fallback to icon
+            const imageContent = item.image 
+                ? `<img src="${item.image}" alt="${item.name}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">`
+                : '';
+            const iconFallback = `<div style="width: 100%; height: 100%; display: ${item.image ? 'none' : 'flex'}; align-items: center; justify-content: center; font-size: 3rem; color: #3b82f6;">${item.icon}</div>`;
+
+            return `
+                <div class="card" data-id="${item.id}" data-type="item">
+                    <div class="card-image">
+                        ${imageContent}
+                        ${iconFallback}
+                    </div>
+                    <h3 class="card-title">${item.name}</h3>
+                    <div class="card-price">$${item.price.toLocaleString()}</div>
+                    <div class="card-stock">
+                        <div class="stock-indicator ${stockStatus}"></div>
+                        ${stockText}
+                    </div>
+                    <div class="card-info">${item.description}</div>
+                    <div class="card-actions">
+                        <div class="quantity-control">
+                            <button class="quantity-btn" onclick="decrementQuantity(this)" ${isOutOfStock ? 'disabled' : ''}>-</button>
+                            <span class="quantity-value">1</span>
+                            <button class="quantity-btn" onclick="incrementQuantity(this)" ${isOutOfStock ? 'disabled' : ''}>+</button>
+                        </div>
+                        <button class="btn btn-primary" onclick="addToCart(this)" ${isOutOfStock ? 'disabled' : ''}>
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function createVehicleCard(vehicle) {
+            const stockStatus = getStockStatus(vehicle.stock);
+            const stockText = getVehicleStockText(vehicle.stock);
+            const tunedBadge = vehicle.tuned ? '<div class="tuned-badge">TUNED</div>' : '';
+            const isOutOfStock = vehicle.stock === 0;
+            
+            // Use image if available, fallback to icon
+            const imageContent = vehicle.image 
+                ? `<img src="${vehicle.image}" alt="${vehicle.name}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">`
+                : '';
+            const iconFallback = `<div style="width: 100%; height: 100%; display: ${vehicle.image ? 'none' : 'flex'}; align-items: center; justify-content: center; font-size: 3rem; color: #3b82f6;">${vehicle.icon}</div>`;
+
+            return `
+                <div class="card" data-id="${vehicle.id}" data-type="vehicle">
+                    <div class="card-image">
+                        ${imageContent}
+                        ${iconFallback}
+                    </div>
+                    <h3 class="card-title">${vehicle.name}</h3>
+                    <div class="card-price">$${vehicle.price.toLocaleString()}/${vehicle.priceType}</div>
+                    <div class="card-stock">
+                        <div class="stock-indicator ${stockStatus}"></div>
+                        ${stockText}
+                    </div>
+                    ${tunedBadge}
+                    <div class="card-info">${vehicle.description}</div>
+                    <div class="card-actions">
+                        <div class="quantity-control">
+                            <button class="quantity-btn" onclick="decrementQuantity(this)" ${isOutOfStock ? 'disabled' : ''}>-</button>
+                            <span class="quantity-value">1</span>
+                            <button class="quantity-btn" onclick="incrementQuantity(this)" ${isOutOfStock ? 'disabled' : ''}>+</button>
+                        </div>
+                        <button class="btn btn-primary" onclick="addToCart(this)" ${isOutOfStock ? 'disabled' : ''}>
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderItems() {
+            const container = document.getElementById('items-grid');
+            if (filteredItemsData.length === 0) {
+                const searchTerm = document.getElementById('search-input').value;
+                const message = searchTerm ? 
+                    `No items found for "${searchTerm}"` : 
+                    'No items available';
+                container.innerHTML = `<div class="no-results">${message}</div>`;
+                return;
+            }
+
+            const itemsHTML = filteredItemsData.map(item => createItemCard(item)).join('');
+            container.innerHTML = itemsHTML;
+            addCardAnimations();
+        }
+
+        function renderVehicles() {
+            const container = document.getElementById('vehicles-grid');
+            if (filteredVehiclesData.length === 0) {
+                const searchTerm = document.getElementById('search-input').value;
+                const message = searchTerm ? 
+                    `No vehicles found for "${searchTerm}"` : 
+                    'No vehicles available';
+                container.innerHTML = `<div class="no-results">${message}</div>`;
+                return;
+            }
+
+            const vehiclesHTML = filteredVehiclesData.map(vehicle => createVehicleCard(vehicle)).join('');
+            container.innerHTML = vehiclesHTML;
+            addCardAnimations();
+        }
+
+        function addCardAnimations() {
+            const cards = document.querySelectorAll('.card');
+            
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-8px) scale(1.02)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+        }
+
+        function switchTab(tab) {
+            const itemsSection = document.getElementById('items-section');
+            const vehiclesSection = document.getElementById('vehicles-section');
+            const tabButtons = document.querySelectorAll('.tab-button');
+
+            // Remove active class from all tabs
+            tabButtons.forEach(button => button.classList.remove('active'));
+
+            if (tab === 'items') {
+                itemsSection.classList.add('active');
+                vehiclesSection.classList.remove('active');
+                tabButtons[0].classList.add('active');
+            } else {
+                itemsSection.classList.remove('active');
+                vehiclesSection.classList.add('active');
+                tabButtons[1].classList.add('active');
+            }
+        }
+
+        // Cart Functions
+        function incrementQuantity(btn) {
+            const quantityEl = btn.previousElementSibling;
+            let quantity = parseInt(quantityEl.textContent);
+            quantityEl.textContent = quantity + 1;
+        }
+
+        function decrementQuantity(btn) {
+            const quantityEl = btn.nextElementSibling;
+            let quantity = parseInt(quantityEl.textContent);
+            if (quantity > 1) {
+                quantityEl.textContent = quantity - 1;
+            }
+        }
+
+        function addToCart(btn) {
+            const card = btn.closest('.card');
+            const id = parseInt(card.dataset.id);
+            const type = card.dataset.type;
+            const quantity = parseInt(card.querySelector('.quantity-value').textContent);
+            
+            const data = type === 'item' ? itemsData : vehiclesData;
+            const item = data.find(i => i.id === id);
+            
+            if (!item) return;
+
+            // Check if item already in cart
+            const existingItem = cart.find(cartItem => cartItem.id === id && cartItem.type === type);
+            
+            if (existingItem) {
+                existingItem.quantity += quantity;
+            } else {
+                cart.push({
+                    id: item.id,
+                    type: type,
+                    name: item.name,
+                    price: item.price,
+                    priceType: item.priceType || 'once',
+                    icon: item.icon,
+                    image: item.image,
+                    quantity: quantity,
+                    tuned: item.tuned || false
+                });
+            }
+            
+            updateCartDisplay();
+            saveCart();
+            
+            // Reset quantity to 1
+            card.querySelector('.quantity-value').textContent = '1';
+        }
+
+        function updateCartDisplay() {
+            const cartCount = document.getElementById('cart-count');
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartCount.textContent = totalItems;
+            cartCount.style.display = totalItems > 0 ? 'flex' : 'none';
+        }
+
+        function openCart() {
+            const modal = document.getElementById('cart-modal');
+            modal.classList.add('active');
+            renderCart();
+        }
+
+        function closeCart() {
+            const modal = document.getElementById('cart-modal');
+            modal.classList.remove('active');
+        }
+
+        function renderCart() {
+            const cartItems = document.getElementById('cart-items');
+            const cartTotal = document.getElementById('cart-total');
+            const cartText = document.getElementById('cart-text');
+            
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<div class="cart-empty">Your cart is empty</div>';
+                cartTotal.textContent = '$0';
+                cartText.value = '';
+                return;
+            }
+            
+            let total = 0;
+            let orderText = '🛒 syntcs SupplyX Order:\n\n';
+            
+            const cartHTML = cart.map(item => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                
+                const priceDisplay = item.priceType === 'once' ? 
+                    `$${item.price.toLocaleString()}` : 
+                    `$${item.price.toLocaleString()}/${item.priceType}`;
+                
+                const tunedText = item.tuned ? ' (TUNED)' : '';
+                orderText += `• ${item.name}${tunedText} - ${priceDisplay} x${item.quantity}\n`;
+                
+                const imageContent = item.image ? 
+                    `<img src="${item.image}" alt="${item.name}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                     <div style="display: none; font-size: 1.5rem;">${item.icon}</div>` :
+                    `<div style="font-size: 1.5rem;">${item.icon}</div>`;
+                
+                return `
+                    <div class="cart-item">
+                        <div class="cart-item-image">
+                            ${imageContent}
+                        </div>
+                        <div class="cart-item-details">
+                            <div class="cart-item-title">${item.name}${item.tuned ? ' (TUNED)' : ''}</div>
+                            <div class="cart-item-price">${priceDisplay}</div>
+                        </div>
+                        <div class="cart-item-quantity">
+                            <button class="quantity-btn" onclick="updateCartQuantity(${item.id}, '${item.type}', -1)">-</button>
+                            <span class="quantity-value">${item.quantity}</span>
+                            <button class="quantity-btn" onclick="updateCartQuantity(${item.id}, '${item.type}', 1)">+</button>
+                        </div>
+                        <button class="cart-item-remove" onclick="removeFromCart(${item.id}, '${item.type}')">🗑️</button>
+                    </div>
+                `;
+            }).join('');
+            
+            orderText += `\nTotal: $${total.toLocaleString()}\n\nPlease confirm this order and provide delivery details.`;
+            
+            cartItems.innerHTML = cartHTML;
+            cartTotal.textContent = `$${total.toLocaleString()}`;
+            cartText.value = orderText;
+        }
+
+        function updateCartQuantity(id, type, change) {
+            const item = cart.find(cartItem => cartItem.id === id && cartItem.type === type);
+            if (item) {
+                item.quantity += change;
+                if (item.quantity <= 0) {
+                    removeFromCart(id, type);
+                } else {
+                    updateCartDisplay();
+                    renderCart();
+                    saveCart();
+                }
+            }
+        }
+
+        function removeFromCart(id, type) {
+            cart = cart.filter(item => !(item.id === id && item.type === type));
+            updateCartDisplay();
+            renderCart();
+            saveCart();
+        }
+
+        function clearCart() {
+            if (confirm('Are you sure you want to clear your cart?')) {
+                cart = [];
+                updateCartDisplay();
+                renderCart();
+                saveCart();
+            }
+        }
+
+        function copyCartToClipboard() {
+            const cartText = document.getElementById('cart-text');
+            cartText.select();
+            document.execCommand('copy');
+            
+            const successMsg = document.getElementById('copy-success');
+            successMsg.classList.add('active');
+            setTimeout(() => {
+                successMsg.classList.remove('active');
+            }, 3000);
+        }
+
+        function saveCart() {
+            localStorage.setItem('syntcs-cart', JSON.stringify(cart));
+        }
+
+        function loadCart() {
+            const savedCart = localStorage.getItem('syntcs-cart');
+            if (savedCart) {
+                cart = JSON.parse(savedCart);
+                updateCartDisplay();
+            }
+        }
+
+        // Close cart when clicking outside
+        document.getElementById('cart-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeCart();
+            }
+        });
+
+        // Load data when page loads
+        document.addEventListener('DOMContentLoaded', loadData);
+    </script>
+</body>
+</html>
