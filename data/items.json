@@ -1,3 +1,4 @@
+[
 {
   "id": 1,
   "name": "Item Name",
@@ -6,3 +7,4 @@
   "icon": "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=300&fit=crop",
   "description": "Item description"
 }
+]
