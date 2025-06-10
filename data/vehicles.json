@@ -1,68 +1,10 @@
-[
-  {
-    "id": 1,
-    "name": "Lamborghini Huracán",
-    "price": 500,
-    "currency": "$",
-    "period": "/day",
-    "stock": 2,
-    "image": "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=400&h=300&fit=crop",
-    "description": "Fully tuned • 850 HP • Sport exhaust • Lowering kit",
-    "tuned": true
-  },
-  {
-    "id": 2,
-    "name": "BMW M4 Competition",
-    "price": 350,
-    "currency": "$",
-    "period": "/day",
-    "stock": 1,
-    "image": "https://images.unsplash.com/photo-1555215695-3004980ad54e?w=400&h=300&fit=crop",
-    "description": "Stage 2 tuning • 650 HP • Carbon body kit • Coilovers",
-    "tuned": true
-  },
-  {
-    "id": 3,
-    "name": "Maverick Helicopter",
-    "price": 800,
-    "currency": "$",
-    "period": "/day",
-    "stock": 1,
-    "image": "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=400&h=300&fit=crop",
-    "description": "Luxury helicopter • 4 seats • GPS navigation",
-    "tuned": false
-  },
-  {
-    "id": 4,
-    "name": "Kawasaki Ninja H2",
-    "price": 200,
-    "currency": "$",
-    "period": "/day",
-    "stock": 3,
-    "image": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop",
-    "description": "Turbo kit • 400 HP • Custom paint • Akrapovic exhaust",
-    "tuned": true
-  },
-  {
-    "id": 5,
-    "name": "Mercedes G63 AMG",
-    "price": 450,
-    "currency": "$",
-    "period": "/day",
-    "stock": 0,
-    "image": "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=400&h=300&fit=crop",
-    "description": "Brabus kit • 700 HP • Off-road tires • Armor plating",
-    "tuned": true
-  },
-  {
-    "id": 6,
-    "name": "Luxury Jet",
-    "price": 1500,
-    "currency": "$",
-    "period": "/day",
-    "stock": 1,
-    "image": "https://images.unsplash.com/photo-1540962351504-03099e0a754b?w=400&h=300&fit=crop",
-    "description": "Private jet • 8 seats • Full equipment • Pilot included",
-    "tuned": false
-  }
-]
+{
+  "id": 1,
+  "name": "Vehicle Name", 
+  "price": 500,
+  "priceType": "day",
+  "stock": 2,
+  "icon": "🚗",
+  "description": "Vehicle description",
+  "tuned": true
+}
