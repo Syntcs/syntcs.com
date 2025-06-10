@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>syntcs SupplyX - Gaming Shop</title>
+    <title>syntcs SupplyX</title>
     <style>
         * {
             margin: 0;
@@ -233,13 +233,64 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        .search-container {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0 40px 0;
+        }
+
+        .search-box {
+            position: relative;
+            max-width: 500px;
+            width: 100%;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 15px 50px 15px 20px;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            background: rgba(30, 41, 59, 0.8);
+            color: #e2e8f0;
+            font-size: 16px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        }
+
+        .search-input::placeholder {
+            color: #94a3b8;
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #94a3b8;
+            font-size: 1.2rem;
+            pointer-events: none;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 40px;
+            color: #94a3b8;
+            font-size: 1.1rem;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <header class="header">
             <h1 class="logo">syntcs SupplyX</h1>
-            <p class="subtitle">Your Gaming Shop for Items & Vehicles</p>
+            <p class="subtitle">Discord: syntcs</p>
         </header>
 
         <div class="tabs-container">
@@ -250,6 +301,14 @@
                 <button class="tab-button" onclick="switchTab('vehicles')">
                     🚗 Vehicle Rental
                 </button>
+            </div>
+        </div>
+
+        <!-- Search Section -->
+        <div class="search-container">
+            <div class="search-box">
+                <input type="text" id="search-input" class="search-input" placeholder="Search items and vehicles...">
+                <div class="search-icon">🔍</div>
             </div>
         </div>
 
@@ -268,14 +327,16 @@
         </div>
 
         <footer class="footer">
-            <p>&copy; 2024 syntcs SupplyX - Your trusted gaming partner</p>
-            <p>Contact: Discord or In-Game Message</p>
+            <p>syntcs SupplyX</p>
+            <p>Discord: syntcs</p>
         </footer>
     </div>
 
     <script>
         let itemsData = [];
         let vehiclesData = [];
+        let filteredItemsData = [];
+        let filteredVehiclesData = [];
 
         // Load data from JSON files
         async function loadData() {
@@ -291,14 +352,50 @@
 
                 itemsData = await itemsResponse.json();
                 vehiclesData = await vehiclesResponse.json();
+                
+                // Initialize filtered data
+                filteredItemsData = [...itemsData];
+                filteredVehiclesData = [...vehiclesData];
 
                 renderItems();
                 renderVehicles();
+                setupSearch();
             } catch (error) {
                 console.error('Error loading data:', error);
                 showError('items-grid', 'Failed to load items data');
                 showError('vehicles-grid', 'Failed to load vehicles data');
             }
+        }
+
+        function setupSearch() {
+            const searchInput = document.getElementById('search-input');
+            searchInput.addEventListener('input', (e) => {
+                const searchTerm = e.target.value.toLowerCase().trim();
+                filterData(searchTerm);
+            });
+        }
+
+        function filterData(searchTerm) {
+            if (!searchTerm) {
+                // Show all data if search is empty
+                filteredItemsData = [...itemsData];
+                filteredVehiclesData = [...vehiclesData];
+            } else {
+                // Filter items
+                filteredItemsData = itemsData.filter(item => 
+                    item.name.toLowerCase().includes(searchTerm) ||
+                    item.description.toLowerCase().includes(searchTerm)
+                );
+                
+                // Filter vehicles
+                filteredVehiclesData = vehiclesData.filter(vehicle => 
+                    vehicle.name.toLowerCase().includes(searchTerm) ||
+                    vehicle.description.toLowerCase().includes(searchTerm)
+                );
+            }
+            
+            renderItems();
+            renderVehicles();
         }
 
         function showError(containerId, message) {
@@ -380,24 +477,32 @@
 
         function renderItems() {
             const container = document.getElementById('items-grid');
-            if (itemsData.length === 0) {
-                container.innerHTML = '<div class="error">No items available</div>';
+            if (filteredItemsData.length === 0) {
+                const searchTerm = document.getElementById('search-input').value;
+                const message = searchTerm ? 
+                    `No items found for "${searchTerm}"` : 
+                    'No items available';
+                container.innerHTML = `<div class="no-results">${message}</div>`;
                 return;
             }
 
-            const itemsHTML = itemsData.map(item => createItemCard(item)).join('');
+            const itemsHTML = filteredItemsData.map(item => createItemCard(item)).join('');
             container.innerHTML = itemsHTML;
             addCardAnimations();
         }
 
         function renderVehicles() {
             const container = document.getElementById('vehicles-grid');
-            if (vehiclesData.length === 0) {
-                container.innerHTML = '<div class="error">No vehicles available</div>';
+            if (filteredVehiclesData.length === 0) {
+                const searchTerm = document.getElementById('search-input').value;
+                const message = searchTerm ? 
+                    `No vehicles found for "${searchTerm}"` : 
+                    'No vehicles available';
+                container.innerHTML = `<div class="no-results">${message}</div>`;
                 return;
             }
 
-            const vehiclesHTML = vehiclesData.map(vehicle => createVehicleCard(vehicle)).join('');
+            const vehiclesHTML = filteredVehiclesData.map(vehicle => createVehicleCard(vehicle)).join('');
             container.innerHTML = vehiclesHTML;
             addCardAnimations();
         }
