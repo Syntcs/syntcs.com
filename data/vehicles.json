@@ -1,12 +1,82 @@
 [
-{
-  "id": 1,
-  "name": "Vehicle Name", 
-  "price": 500,
-  "priceType": "day",
-  "stock": 2,
-  "icon": "🚗",
-  "description": "Vehicle description",
-  "tuned": true
-}
+  {
+    "id": 1,
+    "name": "Lamborghini Huracán",
+    "price": 500,
+    "priceType": "day",
+    "stock": 2,
+    "icon": "🏎️",
+    "description": "Fully tuned • 850 HP • Sport exhaust • Lowering kit",
+    "tuned": true
+  },
+  {
+    "id": 2,
+    "name": "BMW M4 Competition",
+    "price": 350,
+    "priceType": "day",
+    "stock": 1,
+    "icon": "🚗",
+    "description": "Stage 2 tuning • 650 HP • Carbon body kit • Coilovers",
+    "tuned": true
+  },
+  {
+    "id": 3,
+    "name": "Maverick Helicopter",
+    "price": 800,
+    "priceType": "day",
+    "stock": 1,
+    "icon": "🚁",
+    "description": "Luxury helicopter • 4 seats • GPS navigation",
+    "tuned": false
+  },
+  {
+    "id": 4,
+    "name": "Kawasaki Ninja H2",
+    "price": 200,
+    "priceType": "day",
+    "stock": 3,
+    "icon": "🏍️",
+    "description": "Turbo kit • 400 HP • Custom paint • Akrapovic exhaust",
+    "tuned": true
+  },
+  {
+    "id": 5,
+    "name": "Mercedes G63 AMG",
+    "price": 450,
+    "priceType": "day",
+    "stock": 0,
+    "icon": "🚙",
+    "description": "Brabus kit • 700 HP • Off-road tires • Armor plating",
+    "tuned": true
+  },
+  {
+    "id": 6,
+    "name": "Luxury Jet",
+    "price": 1500,
+    "priceType": "day",
+    "stock": 1,
+    "icon": "✈️",
+    "description": "Private jet • 8 seats • Full equipment • Pilot included",
+    "tuned": false
+  },
+  {
+    "id": 7,
+    "name": "Speed Boat",
+    "price": 300,
+    "priceType": "day",
+    "stock": 2,
+    "icon": "🚤",
+    "description": "Twin engine • 600 HP • Racing seats • Sound system",
+    "tuned": true
+  },
+  {
+    "id": 8,
+    "name": "Ford F-150 Raptor",
+    "price": 280,
+    "priceType": "day",
+    "stock": 1,
+    "icon": "🛻",
+    "description": "Off-road package • 500 HP • Lift kit • All-terrain tires",
+    "tuned": true
+  }
 ]
