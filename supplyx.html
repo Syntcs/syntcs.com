@@ -325,10 +325,19 @@
         function createItemCard(item) {
             const stockStatus = getStockStatus(item.stock);
             const stockText = getStockText(item.stock);
+            
+            // Use image if available, fallback to icon
+            const imageContent = item.image 
+                ? `<img src="${item.image}" alt="${item.name}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">`
+                : '';
+            const iconFallback = `<div style="width: 100%; height: 100%; display: ${item.image ? 'none' : 'flex'}; align-items: center; justify-content: center; font-size: 3rem; color: #3b82f6;">${item.icon}</div>`;
 
             return `
                 <div class="card">
-                    <div class="card-image">${item.icon}</div>
+                    <div class="card-image">
+                        ${imageContent}
+                        ${iconFallback}
+                    </div>
                     <h3 class="card-title">${item.name}</h3>
                     <div class="card-price">$${item.price.toLocaleString()}</div>
                     <div class="card-stock">
@@ -344,10 +353,19 @@
             const stockStatus = getStockStatus(vehicle.stock);
             const stockText = getVehicleStockText(vehicle.stock);
             const tunedBadge = vehicle.tuned ? '<div class="tuned-badge">TUNED</div>' : '';
+            
+            // Use image if available, fallback to icon
+            const imageContent = vehicle.image 
+                ? `<img src="${vehicle.image}" alt="${vehicle.name}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">`
+                : '';
+            const iconFallback = `<div style="width: 100%; height: 100%; display: ${vehicle.image ? 'none' : 'flex'}; align-items: center; justify-content: center; font-size: 3rem; color: #3b82f6;">${vehicle.icon}</div>`;
 
             return `
                 <div class="card">
-                    <div class="card-image">${vehicle.icon}</div>
+                    <div class="card-image">
+                        ${imageContent}
+                        ${iconFallback}
+                    </div>
                     <h3 class="card-title">${vehicle.name}</h3>
                     <div class="card-price">$${vehicle.price.toLocaleString()}/${vehicle.priceType}</div>
                     <div class="card-stock">
