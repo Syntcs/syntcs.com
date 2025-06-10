@@ -603,6 +603,7 @@
                 <div class="form-group">
                     <label class="form-label">Price Type</label>
                     <select class="form-input" id="edit-priceType">
+                        <option value="once">once</option>
                         <option value="day">day</option>
                         <option value="hour">hour</option>
                         <option value="week">week</option>
@@ -693,6 +694,7 @@
                 <div class="form-group">
                     <label class="form-label">Price Type</label>
                     <select class="form-input" id="edit-priceType">
+                        <option value="once" ${vehicle.priceType === 'once' ? 'selected' : ''}>once</option>
                         <option value="day" ${vehicle.priceType === 'day' ? 'selected' : ''}>day</option>
                         <option value="hour" ${vehicle.priceType === 'hour' ? 'selected' : ''}>hour</option>
                         <option value="week" ${vehicle.priceType === 'week' ? 'selected' : ''}>week</option>
