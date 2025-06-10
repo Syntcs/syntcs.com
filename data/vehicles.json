@@ -1,90 +1,24 @@
 [
   {
-    "id": 1,
-    "name": "Lamborghini Huracán",
-    "price": 500,
-    "priceType": "day",
-    "stock": 2,
-    "icon": "🏎️",
-    "image": "/placeholder.svg?height=200&width=300",
-    "description": "Fully tuned • 850 HP • Sport exhaust • Lowering kit",
-    "tuned": true
-  },
-  {
-    "id": 2,
-    "name": "BMW M4 Competition",
-    "price": 350,
-    "priceType": "day",
+    "name": "UH-1",
+    "price": 400000,
+    "priceType": "once",
     "stock": 1,
-    "icon": "🚗",
-    "image": "/placeholder.svg?height=200&width=300",
-    "description": "Stage 2 tuning • 650 HP • Carbon body kit • Coilovers",
-    "tuned": true
+    "icon": "",
+    "image": "https://static.wikia.nocookie.net/armedassault/images/9/9a/Reforger-render-uh1h.png/revision/latest/scale-to-width-down/200?cb=20231116135334",
+    "description": " ",
+    "tuned": true,
+    "id": 1
   },
   {
-    "id": 3,
-    "name": "Maverick Helicopter",
-    "price": 800,
-    "priceType": "day",
+    "name": "Ural 4320 Device",
+    "price": 250000,
+    "priceType": "once",
     "stock": 1,
-    "icon": "🚁",
-    "image": "/placeholder.svg?height=200&width=300",
-    "description": "Luxury helicopter • 4 seats • GPS navigation",
-    "tuned": false
-  },
-  {
-    "id": 4,
-    "name": "Kawasaki Ninja H2",
-    "price": 200,
-    "priceType": "day",
-    "stock": 3,
-    "icon": "🏍️",
-    "image": "/placeholder.svg?height=200&width=300",
-    "description": "Turbo kit • 400 HP • Custom paint • Akrapovic exhaust",
-    "tuned": true
-  },
-  {
-    "id": 5,
-    "name": "Mercedes G63 AMG",
-    "price": 450,
-    "priceType": "day",
-    "stock": 0,
-    "icon": "🚙",
-    "image": "/placeholder.svg?height=200&width=300",
-    "description": "Brabus kit • 700 HP • Off-road tires • Armor plating",
-    "tuned": true
-  },
-  {
-    "id": 6,
-    "name": "Luxury Jet",
-    "price": 1500,
-    "priceType": "day",
-    "stock": 1,
-    "icon": "✈️",
-    "image": "/placeholder.svg?height=200&width=300",
-    "description": "Private jet • 8 seats • Full equipment • Pilot included",
-    "tuned": false
-  },
-  {
-    "id": 7,
-    "name": "Speed Boat",
-    "price": 300,
-    "priceType": "day",
-    "stock": 2,
-    "icon": "🚤",
-    "image": "/placeholder.svg?height=200&width=300",
-    "description": "Twin engine • 600 HP • Racing seats • Sound system",
-    "tuned": true
-  },
-  {
-    "id": 8,
-    "name": "Ford F-150 Raptor",
-    "price": 280,
-    "priceType": "day",
-    "stock": 1,
-    "icon": "🛻",
-    "image": "/placeholder.svg?height=200&width=300",
-    "description": "Off-road package • 500 HP • Lift kit • All-terrain tires",
-    "tuned": true
+    "icon": "",
+    "image": "https://ar-gcp-cdn.bistudio.com/image/d586/0b84abb1040b60673ce8fb3ebda7993854ea26f115267a68af859270c8bb/206465.jpg",
+    "description": " ",
+    "tuned": true,
+    "id": 2
   }
 ]
