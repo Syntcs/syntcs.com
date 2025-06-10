@@ -397,8 +397,26 @@
         // Load data from JSON files
         async function loadData() {
             try {
-                // For demo purposes, we'll use the existing data structure
-                // In a real implementation, you'd load from your JSON files
+                const [itemsResponse, vehiclesResponse] = await Promise.all([
+                    fetch('data/items.json'),
+                    fetch('data/vehicles.json')
+                ]);
+
+                if (!itemsResponse.ok || !vehiclesResponse.ok) {
+                    throw new Error('Failed to load data files');
+                }
+
+                itemsData = await itemsResponse.json();
+                vehiclesData = await vehiclesResponse.json();
+
+                renderItems();
+                renderVehicles();
+                showStatus('Data loaded successfully', 'success');
+            } catch (error) {
+                console.error('Error loading data:', error);
+                showStatus('Failed to load JSON files. Using demo data.', 'error');
+                
+                // Fallback to demo data if JSON files can't be loaded
                 itemsData = [
                     {
                         "id": 1,
@@ -436,8 +454,6 @@
 
                 renderItems();
                 renderVehicles();
-            } catch (error) {
-                showStatus('Failed to load data', 'error');
             }
         }
 
