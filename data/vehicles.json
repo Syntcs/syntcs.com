@@ -1,3 +1,4 @@
+[
 {
   "id": 1,
   "name": "Vehicle Name", 
@@ -8,3 +9,4 @@
   "description": "Vehicle description",
   "tuned": true
 }
+]
