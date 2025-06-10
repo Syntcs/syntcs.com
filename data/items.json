@@ -1,56 +1,8 @@
-[
-  {
-    "id": 1,
-    "name": "Diamond Sword",
-    "price": 2500,
-    "currency": "$",
-    "stock": 15,
-    "image": "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=300&fit=crop",
-    "description": "High-quality weapon with maximum durability"
-  },
-  {
-    "id": 2,
-    "name": "Netherite Armor",
-    "price": 4200,
-    "currency": "$",
-    "stock": 3,
-    "image": "https://images.unsplash.com/photo-1544966503-7cc5ac882d5f?w=400&h=300&fit=crop",
-    "description": "Complete armor set with enchantments"
-  },
-  {
-    "id": 3,
-    "name": "Diamonds",
-    "price": 150,
-    "currency": "$",
-    "stock": 64,
-    "image": "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=400&h=300&fit=crop",
-    "description": "Premium materials for crafting"
-  },
-  {
-    "id": 4,
-    "name": "Enchanted Bow",
-    "price": 1800,
-    "currency": "$",
-    "stock": 8,
-    "image": "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=300&fit=crop",
-    "description": "Infinity & Power V enchantments"
-  },
-  {
-    "id": 5,
-    "name": "Healing Potions Set",
-    "price": 350,
-    "currency": "$",
-    "stock": 0,
-    "image": "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=400&h=300&fit=crop",
-    "description": "10x Healing Potion II + 5x Regeneration"
-  },
-  {
-    "id": 6,
-    "name": "Flint & Steel",
-    "price": 75,
-    "currency": "$",
-    "stock": 25,
-    "image": "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=300&fit=crop",
-    "description": "Unbreaking III enchantment"
-  }
-]
+{
+  "id": 1,
+  "name": "Item Name",
+  "price": 1000,
+  "stock": 15,
+  "icon": "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=300&fit=crop",
+  "description": "Item description"
+}
