@@ -2,7 +2,7 @@
   {
     "name": "Ural-4320 Tranport Truck - Canopy (Doc)",
     "price": 3000000,
-    "stock": 1,
+    "stock": 0,
     "icon": "",
     "image": "https://i.imgur.com/QOmPVd5.png",
     "description": " ",
@@ -11,7 +11,7 @@
   {
     "name": "Ural-4320 Fuel Truck (Doc)",
     "price": 2000000,
-    "stock": 0,
+    "stock": 1,
     "icon": "",
     "image": "https://i.imgur.com/f7sTcon.png",
     "description": " ",
